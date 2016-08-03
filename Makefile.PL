@@ -22,6 +22,7 @@ WriteMakefile(
         'Data::Chronicle::Reader' => 0,
         'Data::Chronicle::Mock'   => 0,
         'YAML::XS'                => 0,
+        'JSON::XS'                => 0,
     },
     PREREQ_PM => {
         'Moose'                   => 0,
@@ -29,6 +30,7 @@ WriteMakefile(
         'Data::Chronicle::Writer' => 0,
         'Data::Chronicle::Reader' => 0,
         'YAML::XS'                => 0,
+        'JSON::XS'                => 0,
     },
     dist => {
         COMPRESS => 'gzip -9f',
