@@ -41,19 +41,31 @@ use Moose;
 use namespace::autoclean;
 use YAML::XS qw(LoadFile);
 
-use BOM::Platform::Runtime::AppConfig::Attribute::Section;
-use BOM::Platform::Runtime::AppConfig::Attribute::Global;
+use App::Config::Attribute::Section;
+use App::Config::Attribute::Global;
 use Data::Hash::DotNotation;
 
-use BOM::System::Chronicle;
+use Data::Chronicle::Reader;
+use Data::Chronicle::Writer;
 
 my $app_config_definitions = LoadFile('/home/git/regentmarkets/bom-platform/config/app_config_definitions.yml');
+
+has chronicle_reader => (
+                         is  => 'ro',
+                         isa => 'Data::Chronicle::Reader',
+                        );
+
+has chronicle_writer => (
+                         is  => 'ro',
+                         isa => 'Data::Chronicle::Writer',
+                        );
+
 
 sub check_for_update {
     my $self     = shift;
     my $data_set = $self->data_set;
 
-    my $app_settings = BOM::System::Chronicle::get('app_settings', 'binary');
+    my $app_settings = self->chronicle_reader->get('app_settings', 'binary');
 
     if ($app_settings and $data_set) {
         my $db_version = $app_settings->{_rev};
@@ -114,11 +126,11 @@ sub _create_section {
 
     my $writer      = "_$name";
     my $path_config = {};
-    if ($section->isa('BOM::Platform::Runtime::AppConfig::Attribute::Section')) {
+    if ($section->isa('App::Config::Attribute::Section')) {
         $path_config = {parent_path => $section->path};
     }
 
-    my $new_section = Moose::Meta::Class->create_anon_class(superclasses => ['BOM::Platform::Runtime::AppConfig::Attribute::Section'])->new_object(
+    my $new_section = Moose::Meta::Class->create_anon_class(superclasses => ['App::Config::Attribute::Section'])->new_object(
         name       => $name,
         definition => $definition,
         data_set   => {},
@@ -128,7 +140,7 @@ sub _create_section {
     $section->meta->add_attribute(
         $name,
         is            => 'ro',
-        isa           => 'BOM::Platform::Runtime::AppConfig::Attribute::Section',
+        isa           => 'App::Config::Attribute::Section',
         writer        => $writer,
         documentation => $definition->{description},
     );
@@ -146,7 +158,7 @@ sub _create_global_attribute {
     my $name       = shift;
     my $definition = shift;
 
-    my $attribute = $self->_add_attribute('BOM::Platform::Runtime::AppConfig::Attribute::Global', $section, $name, $definition);
+    my $attribute = $self->_add_attribute('App::Config::Attribute::Global', $section, $name, $definition);
     $self->_add_dynamic_setting_info($attribute->path, $definition);
 
     return;
@@ -158,7 +170,7 @@ sub _create_generic_attribute {
     my $name       = shift;
     my $definition = shift;
 
-    $self->_add_attribute('BOM::Platform::Runtime::AppConfig::Attribute', $section, $name, $definition);
+    $self->_add_attribute('App::Config::Attribute', $section, $name, $definition);
 
     return;
 }
@@ -212,7 +224,7 @@ sub _validate_key {
 
 sub save_dynamic {
     my $self = shift;
-    my $settings = BOM::System::Chronicle::get('app_settings', 'binary') || {};
+    my $settings = $self->chronicle_reader->get('app_settings', 'binary') || {};
 
     #Cleanup globals
     my $global = Data::Hash::DotNotation->new();
@@ -224,13 +236,14 @@ sub save_dynamic {
 
     $settings->{global} = $global->data;
     $settings->{_rev}   = time;
-    BOM::System::Chronicle::set('app_settings', 'binary', $settings);
+    $self->chronicle_writer->set('app_settings', 'binary', $settings);
 
     return 1;
 }
 
 sub current_revision {
-    my $settings = BOM::System::Chronicle::get('app_settings', 'binary');
+    my $self = shift;
+    my $settings = $self->chronicle_reader->get('app_settings', 'binary');
     return $settings->{_rev};
 }
 
@@ -240,7 +253,7 @@ sub _build_data_set {
     # relatively small yaml, so loading it shouldn't be expensive.
     my $data_set->{app_config} = Data::Hash::DotNotation->new(data => {});
 
-    $self->_add_app_setttings($data_set, BOM::System::Chronicle::get('app_settings', 'binary') || {});
+    $self->_add_app_setttings($data_set, $self->chronicle_reader->get('app_settings', 'binary') || {});
 
     return $data_set;
 }
