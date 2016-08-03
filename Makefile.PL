@@ -23,6 +23,7 @@ WriteMakefile(
         'Data::Chronicle::Mock'   => 0,
         'YAML::XS'                => 0,
         'JSON::XS'                => 0,
+        'Test::MockObject'        => 0,
     },
     PREREQ_PM => {
         'Moose'                   => 0,

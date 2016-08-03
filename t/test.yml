@@ -1,0 +1,12 @@
+system:
+  description: "Various parameters determining core application functionality"
+  isa: section
+  contains:
+    email:
+      description: "Dummy email address to indicate email sent from our system"
+      isa: Str
+      default: "dummy@binary.com"
+    admins:
+      description: "Are we on Production?"
+      isa: ArrayRef
+      default: []

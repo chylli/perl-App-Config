@@ -50,18 +50,20 @@ use Data::Chronicle::Writer;
 
 has definition_yml =>  (
                         is => 'ro',
-                        isa => 'String',
+                        isa => 'Str',
                         required => 1,
                        );
 
 has chronicle_reader => (
                          is  => 'ro',
                          isa => 'Data::Chronicle::Reader',
+                         required =>1,
                         );
 
 has chronicle_writer => (
                          is  => 'ro',
                          isa => 'Data::Chronicle::Writer',
+                         required => 1,
                         );
 
 
