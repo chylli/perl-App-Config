@@ -39,6 +39,10 @@ sub _check_type {
     return;
 }
 
+=head2 value
+
+=cut
+
 sub value {
     my ($self, $value) = @_;
 
@@ -60,6 +64,10 @@ sub value {
     return $self->{_value};
 }
 
+=head2 build
+
+=cut
+
 sub build {
     my $self    = shift;
     my $default = $self->definition->{default};
@@ -67,6 +75,10 @@ sub build {
     $self->{_value} = $default;
     return $self;
 }
+
+=head2  is_bool_type
+
+=cut
 
 sub is_bool_type {
     my $self = shift;

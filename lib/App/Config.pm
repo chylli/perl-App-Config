@@ -33,8 +33,6 @@ if you don't export anything, such as for a purely object-oriented module.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
-
 =cut
 
 use Moose;
@@ -48,17 +46,35 @@ use Data::Hash::DotNotation;
 use Data::Chronicle::Reader;
 use Data::Chronicle::Writer;
 
+=head2 definition_yml
+
+The YAML file that store the configuration
+
+=cut
+
 has definition_yml =>  (
                         is => 'ro',
                         isa => 'Str',
                         required => 1,
                        );
 
+=head2 chronicle_reader
+
+The chronicle store that configurations can be fetch from it
+
+=cut
+
 has chronicle_reader => (
                          is  => 'ro',
                          isa => 'Data::Chronicle::Reader',
                          required =>1,
                         );
+
+=head2 chronicle_reader
+
+The chronicle store that configurations can be stored into it
+
+=cut
 
 has chronicle_writer => (
                          is  => 'ro',
@@ -68,21 +84,16 @@ has chronicle_writer => (
 
 
 
-sub check_for_update {
-    my $self     = shift;
-    my $data_set = $self->data_set;
-
-    my $app_settings = self->chronicle_reader->get('app_settings', 'binary');
-
-    if ($app_settings and $data_set) {
-        my $db_version = $app_settings->{_rev};
-        unless ($data_set->{version} and $db_version and $db_version eq $data_set->{version}) {
-            $self->_add_app_setttings($data_set, $app_settings);
-        }
-    }
-
-    return;
-}
+has setting_namespace => (
+                          is => 'ro',
+                          isa => 'Str',
+                          default => 'app_settings',
+                         );
+has setting_name => (
+                     is => 'ro',
+                     isa => 'Str',
+                     default => 'binary',
+                    );
 
 # definitions database
 has _defdb => (
@@ -229,9 +240,37 @@ sub _validate_key {
     return;
 }
 
+=head2 check_for_update
+
+check updated settings f rom chronicle db
+
+=cut
+
+sub check_for_update {
+  my $self     = shift;
+  my $data_set = $self->data_set;
+
+  my $app_settings = self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
+
+  if ($app_settings and $data_set) {
+    my $db_version = $app_settings->{_rev};
+    unless ($data_set->{version} and $db_version and $db_version eq $data_set->{version}) {
+      $self->_add_app_setttings($data_set, $app_settings);
+    }
+  }
+
+  return;
+}
+
+=head2 save_dynamic
+
+Save synamic settings into chronicle db
+
+=cut
+
 sub save_dynamic {
     my $self = shift;
-    my $settings = $self->chronicle_reader->get('app_settings', 'binary') || {};
+    my $settings = $self->chronicle_reader->get($self->setting_namespace, $self->setting_name) || {};
 
     #Cleanup globals
     my $global = Data::Hash::DotNotation->new();
@@ -243,14 +282,20 @@ sub save_dynamic {
 
     $settings->{global} = $global->data;
     $settings->{_rev}   = time;
-    $self->chronicle_writer->set('app_settings', 'binary', $settings);
+    $self->chronicle_writer->set($self->setting_namespace, $self->setting_name, $settings);
 
     return 1;
 }
 
+=head2 current_revision
+
+get current revision of settings.
+
+=cut
+
 sub current_revision {
     my $self = shift;
-    my $settings = $self->chronicle_reader->get('app_settings', 'binary');
+    my $settings = $self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
     return $settings->{_rev};
 }
 
@@ -260,7 +305,7 @@ sub _build_data_set {
     # relatively small yaml, so loading it shouldn't be expensive.
     my $data_set->{app_config} = Data::Hash::DotNotation->new(data => {});
 
-    $self->_add_app_setttings($data_set, $self->chronicle_reader->get('app_settings', 'binary') || {});
+    $self->_add_app_setttings($data_set, $self->chronicle_reader->get($self->setting_namespace, $self->setting_name) || {});
 
     return $data_set;
 }
@@ -300,6 +345,10 @@ sub _add_dynamic_setting_info {
     return;
 }
 
+=head2 BUILD
+
+=cut
+
 sub BUILD {
     my $self = shift;
 
@@ -309,8 +358,6 @@ sub BUILD {
 }
 
 __PACKAGE__->meta->make_immutable;
-
-1;
 
 =head1 AUTHOR
 
@@ -361,43 +408,6 @@ L<http://search.cpan.org/dist/App-Config/>
 =head1 LICENSE AND COPYRIGHT
 
 Copyright 2016 Binary.com.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of the the Artistic License (2.0). You may obtain a
-copy of the full license at:
-
-L<http://www.perlfoundation.org/artistic_license_2_0>
-
-Any use, modification, and distribution of the Standard or Modified
-Versions is governed by this Artistic License. By using, modifying or
-distributing the Package, you accept this license. Do not use, modify,
-or distribute the Package, if you do not accept this license.
-
-If your Modified Version has been derived from a Modified Version made
-by someone other than you, you are nevertheless required to ensure that
-your Modified Version complies with the requirements of this license.
-
-This license does not grant you the right to use any trademark, service
-mark, tradename, or logo of the Copyright Holder.
-
-This license includes the non-exclusive, worldwide, free-of-charge
-patent license to make, have made, use, offer to sell, sell, import and
-otherwise transfer the Package with respect to any patent claims
-licensable by the Copyright Holder that are necessarily infringed by the
-Package. If you institute patent litigation (including a cross-claim or
-counterclaim) against any party alleging that the Package constitutes
-direct or contributory patent infringement, then this Artistic License
-to you shall terminate on the date that such litigation is filed.
-
-Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
-AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
-THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY
-YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
-CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
-CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 
 =cut
 
