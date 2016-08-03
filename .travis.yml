@@ -12,6 +12,8 @@ before_install:
     - build-perl
     - perl -V
     - "cpanm -n --installdeps ."
-
+install:
+    - perl Makefile.PL
+    - make manifest
 script:
-  perl Makefile.PL && make manifest && RELEASE_TESTING=1 make test
+    - RELEASE_TESTING=1 make test
