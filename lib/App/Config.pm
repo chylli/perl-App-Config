@@ -19,14 +19,12 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+    my $app_config = App::Config->new;
 
-Perhaps a little code snippet.
+=head1 DESCRIPTION
 
-    use App::Config;
-
-    my $foo = App::Config->new();
-    ...
+This module parses configuration files and provides interface to access
+configuration information.
 
 =head1 EXPORT
 

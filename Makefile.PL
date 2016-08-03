@@ -8,7 +8,7 @@ WriteMakefile(
     AUTHOR           => q{Binary.com <support@binary.com>},
     VERSION_FROM     => 'lib/App/Config.pm',
     ABSTRACT_FROM    => 'lib/App/Config.pm',
-    LICENSE          => 'artistic_2',
+    LICENSE          => 'apache',
     PL_FILES         => {},
     MIN_PERL_VERSION => 5.006,
     CONFIGURE_REQUIRES => {
