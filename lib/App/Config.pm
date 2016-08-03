@@ -48,7 +48,11 @@ use Data::Hash::DotNotation;
 use Data::Chronicle::Reader;
 use Data::Chronicle::Writer;
 
-my $app_config_definitions = LoadFile('/home/git/regentmarkets/bom-platform/config/app_config_definitions.yml');
+has definition_yml =>  (
+                        is => 'ro',
+                        isa => 'String',
+                        required => 1,
+                       );
 
 has chronicle_reader => (
                          is  => 'ro',
@@ -59,6 +63,7 @@ has chronicle_writer => (
                          is  => 'ro',
                          isa => 'Data::Chronicle::Writer',
                         );
+
 
 
 sub check_for_update {
@@ -81,7 +86,7 @@ sub check_for_update {
 has _defdb => (
     is      => 'rw',
     lazy    => 1,
-    default => sub { $app_config_definitions },
+    default => sub { LoadFile(shift->definition_yml) },
 );
 
 has 'data_set' => (
