@@ -30,8 +30,6 @@ my $app_config2 = App::Config->new(
 );
 is($app_config2->current_revision, $new_revision,  "revision is correct even if we create a new instance");
 is($app_config2->system->email,    'test@abc.com', "email is updated");
-#sleep 1 so that new revision will be changed (revision use 'time' as the value);
-sleep 1;
 $app_config->system->email('test2@abc.com');
 $app_config->save_dynamic;
 $app_config2->check_for_update;

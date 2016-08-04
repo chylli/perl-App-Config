@@ -24,6 +24,7 @@ WriteMakefile(
         'YAML::XS'                => 0,
         'JSON::XS'                => 0,
         'Test::MockObject'        => 0,
+        'Time::HiRes'             => 0,
     },
     PREREQ_PM => {
         'Moose'                   => 0,
@@ -32,6 +33,7 @@ WriteMakefile(
         'Data::Chronicle::Reader' => 0,
         'YAML::XS'                => 0,
         'JSON::XS'                => 0,
+        'Time::HiRes'             => 0,
     },
     dist => {
         COMPRESS => 'gzip -9f',

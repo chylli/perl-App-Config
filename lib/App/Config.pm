@@ -3,6 +3,7 @@ package App::Config;
 use 5.006;
 use strict;
 use warnings;
+use Time::HiRes qw(time);
 
 =head1 NAME
 
