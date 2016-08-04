@@ -17,12 +17,4 @@ __PACKAGE__->meta->make_immutable;
 
 This class isn't intended for consumption outside of App::Config.
 
-=head1 AUTHOR
-
-Arun Murali, C<< <arun at regentmarkets.com> >>
-
-=head1 COPYRIGHT
-
-(c) 2013- RMG Tech (Malaysia) Sdn Bhd
-
 =cut

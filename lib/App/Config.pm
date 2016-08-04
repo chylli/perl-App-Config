@@ -397,11 +397,6 @@ L<http://search.cpan.org/dist/App-Config/>
 
 =head1 ACKNOWLEDGEMENTS
 
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2016 Binary.com.
-
 =cut
 
 1;    # End of App::Config

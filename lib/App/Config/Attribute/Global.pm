@@ -31,13 +31,3 @@ no Moose;
 __PACKAGE__->meta->make_immutable;
 
 1;
-
-=head1 AUTHOR
-
-Arun Murali, C<< <arun at regentmarkets.com> >>
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2013 RMG Technology (M) Sdn Bhd
-
-=cut
