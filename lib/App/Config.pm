@@ -247,7 +247,7 @@ sub check_for_update {
     my $self     = shift;
     my $data_set = $self->data_set;
 
-    my $app_settings = self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
+    my $app_settings = $self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
 
     if ($app_settings and $data_set) {
         my $db_version = $app_settings->{_rev};
