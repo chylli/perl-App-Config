@@ -2,10 +2,6 @@
 
 App::Config - The great new App::Config!
 
-
-[![Build Status](https://travis-ci.org/binary-com/perl-Cache-RedisDB.svg?branch=master)](https://travis-ci.org/binary-com/perl-Cache-RedisDB)
-[![Coverage Status](https://coveralls.io/repos/binary-com/perl-Cache-RedisDB/badge.png?branch=master)](https://coveralls.io/r/binary-com/perl-Cache-RedisDB?branch=master)
-
 # VERSION
 
 Version 0.01
