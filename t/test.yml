@@ -6,6 +6,7 @@ system:
       description: "Dummy email address to indicate email sent from our system"
       isa: Str
       default: "dummy@binary.com"
+      global: 1
     admins:
       description: "Are we on Production?"
       isa: ArrayRef
