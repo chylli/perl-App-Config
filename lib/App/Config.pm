@@ -16,7 +16,6 @@ Version 0.01
 
 our $VERSION = '0.01';
 
-
 =head1 SYNOPSIS
 
     my $app_config = App::Config->new;
@@ -52,11 +51,11 @@ The YAML file that store the configuration
 
 =cut
 
-has definition_yml =>  (
-                        is => 'ro',
-                        isa => 'Str',
-                        required => 1,
-                       );
+has definition_yml => (
+    is       => 'ro',
+    isa      => 'Str',
+    required => 1,
+);
 
 =head2 chronicle_reader
 
@@ -65,10 +64,10 @@ The chronicle store that configurations can be fetch from it
 =cut
 
 has chronicle_reader => (
-                         is  => 'ro',
-                         isa => 'Data::Chronicle::Reader',
-                         required =>1,
-                        );
+    is       => 'ro',
+    isa      => 'Data::Chronicle::Reader',
+    required => 1,
+);
 
 =head2 chronicle_reader
 
@@ -77,23 +76,21 @@ The chronicle store that configurations can be stored into it
 =cut
 
 has chronicle_writer => (
-                         is  => 'ro',
-                         isa => 'Data::Chronicle::Writer',
-                         required => 1,
-                        );
-
-
+    is       => 'ro',
+    isa      => 'Data::Chronicle::Writer',
+    required => 1,
+);
 
 has setting_namespace => (
-                          is => 'ro',
-                          isa => 'Str',
-                          default => 'app_settings',
-                         );
+    is      => 'ro',
+    isa     => 'Str',
+    default => 'app_settings',
+);
 has setting_name => (
-                     is => 'ro',
-                     isa => 'Str',
-                     default => 'binary',
-                    );
+    is      => 'ro',
+    isa     => 'Str',
+    default => 'binary',
+);
 
 # definitions database
 has _defdb => (
@@ -247,19 +244,19 @@ check updated settings f rom chronicle db
 =cut
 
 sub check_for_update {
-  my $self     = shift;
-  my $data_set = $self->data_set;
+    my $self     = shift;
+    my $data_set = $self->data_set;
 
-  my $app_settings = self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
+    my $app_settings = self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
 
-  if ($app_settings and $data_set) {
-    my $db_version = $app_settings->{_rev};
-    unless ($data_set->{version} and $db_version and $db_version eq $data_set->{version}) {
-      $self->_add_app_setttings($data_set, $app_settings);
+    if ($app_settings and $data_set) {
+        my $db_version = $app_settings->{_rev};
+        unless ($data_set->{version} and $db_version and $db_version eq $data_set->{version}) {
+            $self->_add_app_setttings($data_set, $app_settings);
+        }
     }
-  }
 
-  return;
+    return;
 }
 
 =head2 save_dynamic
@@ -411,4 +408,4 @@ Copyright 2016 Binary.com.
 
 =cut
 
-1; # End of App::Config
+1;    # End of App::Config
