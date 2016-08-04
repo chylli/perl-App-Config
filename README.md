@@ -1,1 +1,100 @@
-# perl-App-Config
+# NAME
+
+App::Config - The great new App::Config!
+
+# VERSION
+
+Version 0.01
+
+# SYNOPSIS
+
+    my $app_config = App::Config->new;
+
+# DESCRIPTION
+
+This module parses configuration files and provides interface to access
+configuration information.
+
+# FILE FORMAT
+
+The configuration file is a YAML file. Here is an example:
+
+    system:
+      description: "Various parameters determining core application functionality"
+      isa: section
+      contains:
+        email:
+          description: "Dummy email address to indicate email sent from our system"
+          isa: Str
+          default: "dummy@binary.com"
+          global: 1
+        admins:
+          description: "Are we on Production?"
+          isa: ArrayRef
+          default: []
+
+Every atribute is very intuitive. If an item is global, you can change its value and the value will be stored into chronicle database by calling the method `save_dynamic`.
+
+# SUBROUTINES/METHODS
+
+## definition\_yml
+
+The YAML file that store the configuration
+
+## chronicle\_reader
+
+The chronicle store that configurations can be fetch from it
+
+## chronicle\_reader
+
+The chronicle store that configurations can be stored into it
+
+## check\_for\_update
+
+check and load updated settings from chronicle db
+
+## save\_dynamic
+
+Save synamic settings into chronicle db
+
+## current\_revision
+
+get current revision of settings.
+
+## BUILD
+
+# AUTHOR
+
+Binary.com, `<support at binary.com>`
+
+# BUGS
+
+Please report any bugs or feature requests to `bug-app-config at rt.cpan.org`, or through
+the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Config](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-Config).  I will be notified, and then you'll
+automatically be notified of progress on your bug as I make changes.
+
+# SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc App::Config
+
+You can also look for information at:
+
+- RT: CPAN's request tracker (report bugs here)
+
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Config](http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Config)
+
+- AnnoCPAN: Annotated CPAN documentation
+
+    [http://annocpan.org/dist/App-Config](http://annocpan.org/dist/App-Config)
+
+- CPAN Ratings
+
+    [http://cpanratings.perl.org/d/App-Config](http://cpanratings.perl.org/d/App-Config)
+
+- Search CPAN
+
+    [http://search.cpan.org/dist/App-Config/](http://search.cpan.org/dist/App-Config/)
+
+# ACKNOWLEDGEMENTS

@@ -26,6 +26,26 @@ our $VERSION = '0.01';
 This module parses configuration files and provides interface to access
 configuration information.
 
+=head1 FILE FORMAT
+
+The configuration file is a YAML file. Here is an example:
+
+    system:
+      description: "Various parameters determining core application functionality"
+      isa: section
+      contains:
+        email:
+          description: "Dummy email address to indicate email sent from our system"
+          isa: Str
+          default: "dummy@binary.com"
+          global: 1
+        admins:
+          description: "Are we on Production?"
+          isa: ArrayRef
+          default: []
+
+Every atribute is very intuitive. If an item is global, you can change its value and the value will be stored into chronicle database by calling the method C<save_dynamic>.
+
 =head1 SUBROUTINES/METHODS
 
 =cut
@@ -235,7 +255,7 @@ sub _validate_key {
 
 =head2 check_for_update
 
-check updated settings f rom chronicle db
+check and load updated settings from chronicle db
 
 =cut
 
