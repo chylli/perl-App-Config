@@ -3,11 +3,11 @@ system:
   isa: section
   contains:
     email:
-      description: "Dummy email address to indicate email sent from our system"
+      description: "Dummy email address"
       isa: Str
-      default: "dummy@binary.com"
+      default: "dummy@email.com"
       global: 1
     admins:
-      description: "Are we on Production?"
+      description: "Admin list"
       isa: ArrayRef
       default: []
