@@ -1,6 +1,6 @@
 # NAME
 
-App::Config - The great new App::Config!
+App::Config - An OO configuration module which can be changed and stored into chronicle database.
 
 # VERSION
 
@@ -24,16 +24,16 @@ The configuration file is a YAML file. Here is an example:
       isa: section
       contains:
         email:
-          description: "Dummy email address to indicate email sent from our system"
+          description: "Dummy email address"
           isa: Str
-          default: "dummy@binary.com"
+          default: "dummy@mail.com"
           global: 1
         admins:
           description: "Are we on Production?"
           isa: ArrayRef
           default: []
 
-Every atribute is very intuitive. If an item is global, you can change its value and the value will be stored into chronicle database by calling the method `save_dynamic`.
+Every attribute is very intuitive. If an item is global, you can change its value and the value will be stored into chronicle database by calling the method `save_dynamic`.
 
 # SUBROUTINES/METHODS
 
@@ -43,11 +43,11 @@ The YAML file that store the configuration
 
 ## chronicle\_reader
 
-The chronicle store that configurations can be fetch from it
+The chronicle store that configurations can be fetch from it. It should be an instance of [Data::Chronicle::Reader](https://metacpan.org/pod/Data::Chronicle::Reader).
 
 ## chronicle\_reader
 
-The chronicle store that configurations can be stored into it
+The chronicle store that updated configurations can be stored into it. It should be an instance of [Data::Chronicle::Writer](https://metacpan.org/pod/Data::Chronicle::Writer).
 
 ## check\_for\_update
 

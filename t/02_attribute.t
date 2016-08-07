@@ -14,8 +14,8 @@ qr/Attribute \(data_set\) is required/;
 
 throws_ok {
     App::Config::Attribute->new(
-        name        => 'suspend_trades',
-        parent_path => 'quants.underlyings',
+        name        => 'test_attribute',
+        parent_path => 'test.parent',
         data_set    => {version => 1},
         definition  => {
             isa     => 'ArrayRef',

@@ -1,5 +1,6 @@
 NAME
-    App::Config - The great new App::Config!
+    App::Config - An OO configuration module which can be changed and stored
+    into chronicle database.
 
 VERSION
     Version 0.01
@@ -19,16 +20,16 @@ FILE FORMAT
           isa: section
           contains:
             email:
-              description: "Dummy email address to indicate email sent from our system"
+              description: "Dummy email address"
               isa: Str
-              default: "dummy@binary.com"
+              default: "dummy@mail.com"
               global: 1
             admins:
               description: "Are we on Production?"
               isa: ArrayRef
               default: []
 
-    Every atribute is very intuitive. If an item is global, you can change
+    Every attribute is very intuitive. If an item is global, you can change
     its value and the value will be stored into chronicle database by
     calling the method "save_dynamic".
 
@@ -37,10 +38,12 @@ SUBROUTINES/METHODS
     The YAML file that store the configuration
 
   chronicle_reader
-    The chronicle store that configurations can be fetch from it
+    The chronicle store that configurations can be fetch from it. It should
+    be an instance of Data::Chronicle::Reader.
 
   chronicle_reader
-    The chronicle store that configurations can be stored into it
+    The chronicle store that updated configurations can be stored into it.
+    It should be an instance of Data::Chronicle::Writer.
 
   check_for_update
     check and load updated settings from chronicle db
