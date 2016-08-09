@@ -10,11 +10,11 @@ App::Config::Chronicle - An OO configuration module which can be changed and sto
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -109,6 +109,15 @@ has setting_name => (
     required => 1,
     default  => 'settings1',
 );
+
+=head2 refresh_interval
+
+How much time (in seconds) should pass between C<check_for_update> invocations until
+it actually will do (a bit heavy) lookup for settings in redis.
+
+Default value is 10 seconds
+
+=cut
 
 has refresh_interval => (
     is       => 'ro',
