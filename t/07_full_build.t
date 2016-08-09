@@ -1,4 +1,4 @@
-use Test::Most 0.22 (tests => 8);
+use Test::Most;
 use Test::Warn;
 use Data::Chronicle::Mock;
 use App::Config::Chronicle;
@@ -27,10 +27,17 @@ my $app_config2 = App::Config::Chronicle->new(
     definition_yml   => "$Bin/test.yml",
     chronicle_reader => $chronicle_r,
     chronicle_writer => $chronicle_w,
+    refresh_interval => 1,
 );
 is($app_config2->current_revision, $new_revision,  "revision is correct even if we create a new instance");
 is($app_config2->system->email,    'test@abc.com', "email is updated");
 $app_config->system->email('test2@abc.com');
 $app_config->save_dynamic;
 $app_config2->check_for_update;
+is($app_config2->system->email, 'test@abc.com', "still have old value");
+
+sleep($app_config2->refresh_interval);
+$app_config2->check_for_update;
 is($app_config2->system->email, 'test2@abc.com', "check_for_update worked");
+
+done_testing;

@@ -110,6 +110,20 @@ has setting_name => (
     default  => 'settings1',
 );
 
+has refresh_interval => (
+    is       => 'ro',
+    isa      => 'Num',
+    required => 1,
+    default  => 10,
+);
+
+has _updated_at => (
+    is       => 'ro',
+    isa      => 'Num',
+    required => 1,
+    default  => sub { time },
+);
+
 # definitions database
 has _defdb => (
     is      => 'rw',
@@ -262,14 +276,21 @@ check and load updated settings from chronicle db
 =cut
 
 sub check_for_update {
-    my $self     = shift;
-    my $data_set = $self->data_set;
+    my $self = shift;
 
+    # do fast cached check
+    my $now         = time;
+    my $prev_update = $self->_updated_at;
+    return if ($now - $prev_update < $self->refresh_interval);
+
+    # do check in Redis
+    my $data_set = $self->data_set;
     my $app_settings = $self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
 
     if ($app_settings and $data_set) {
         my $db_version = $app_settings->{_rev};
         unless ($data_set->{version} and $db_version and $db_version eq $data_set->{version}) {
+            # refresh all
             $self->_add_app_setttings($data_set, $app_settings);
         }
     }
