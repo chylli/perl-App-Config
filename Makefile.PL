@@ -5,12 +5,12 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME               => 'App::Config',
-    AUTHOR             => q{Binary.com <support@binary.com>},
+    AUTHOR             => q{Binary.com <binary@cpan.org>},
     VERSION_FROM       => 'lib/App/Config.pm',
     ABSTRACT_FROM      => 'lib/App/Config.pm',
     LICENSE            => 'apache',
     PL_FILES           => {},
-    MIN_PERL_VERSION   => 5.006,
+    MIN_PERL_VERSION   => 5.014,
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 0,
     },

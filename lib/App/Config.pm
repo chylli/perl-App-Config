@@ -85,7 +85,7 @@ has chronicle_reader => (
     required => 1,
 );
 
-=head2 chronicle_reader
+=head2 chronicle_writer
 
 The chronicle store that updated configurations can be stored into it. It should be an instance of L<Data::Chronicle::Writer>.
 
@@ -374,7 +374,7 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 AUTHOR
 
-Binary.com, C<< <support at binary.com> >>
+Binary.com, C<< <binary at cpan.org> >>
 
 =head1 BUGS
 

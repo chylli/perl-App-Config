@@ -45,7 +45,7 @@ The YAML file that store the configuration
 
 The chronicle store that configurations can be fetch from it. It should be an instance of [Data::Chronicle::Reader](https://metacpan.org/pod/Data::Chronicle::Reader).
 
-## chronicle\_reader
+## chronicle\_writer
 
 The chronicle store that updated configurations can be stored into it. It should be an instance of [Data::Chronicle::Writer](https://metacpan.org/pod/Data::Chronicle::Writer).
 
@@ -65,7 +65,7 @@ get current revision of settings.
 
 # AUTHOR
 
-Binary.com, `<support at binary.com>`
+Binary.com, `<binary at cpan.org>`
 
 # BUGS
 

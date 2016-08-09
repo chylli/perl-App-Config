@@ -41,7 +41,7 @@ SUBROUTINES/METHODS
     The chronicle store that configurations can be fetch from it. It should
     be an instance of Data::Chronicle::Reader.
 
-  chronicle_reader
+  chronicle_writer
     The chronicle store that updated configurations can be stored into it.
     It should be an instance of Data::Chronicle::Writer.
 
@@ -56,7 +56,7 @@ SUBROUTINES/METHODS
 
   BUILD
 AUTHOR
-    Binary.com, "<support at binary.com>"
+    Binary.com, "<binary at cpan.org>"
 
 BUGS
     Please report any bugs or feature requests to "bug-app-config at
