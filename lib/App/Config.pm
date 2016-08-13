@@ -1,6 +1,5 @@
 package App::Config;
 
-use 5.006;
 use strict;
 use warnings;
 use Time::HiRes qw(time);
@@ -103,9 +102,10 @@ has setting_namespace => (
     default => 'app_settings',
 );
 has setting_name => (
-    is      => 'ro',
-    isa     => 'Str',
-    default => 'settings1',
+    is       => 'ro',
+    isa      => 'Str',
+    required => 1,
+    default  => 'settings1',
 );
 
 # definitions database
@@ -302,7 +302,7 @@ sub save_dynamic {
 
 =head2 current_revision
 
-get current revision of settings.
+loads setting from chronicle reader and returns the last revision and drops them
 
 =cut
 

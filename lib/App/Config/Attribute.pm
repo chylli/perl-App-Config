@@ -28,7 +28,7 @@ sub _check_type {
     my $def = $self->{definition};
     $self->{_json_string} //= $def->{isa} eq 'json_string' ? 1 : 0;
     if ($self->{_json_string}) {
-        try { $value = decode_json($value) } catch { die "Couldn't decode JSON attribute" };
+        try { $value = decode_json($value) } catch { die "Couldn't decode JSON attribute $value: $_" };
     } else {
         $self->{_type_constraint} //= find_type_constraint($def->{isa});
         unless ($self->{_type_constraint}) {
@@ -74,15 +74,6 @@ sub build {
     $self->_check_type($default);
     $self->{_value} = $default;
     return $self;
-}
-
-=head2  is_bool_type
-
-=cut
-
-sub is_bool_type {
-    my $self = shift;
-    return ($self->definition and uc $self->definition->{isa} eq 'BOOL');
 }
 
 sub _build_value {
