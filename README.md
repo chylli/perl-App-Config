@@ -59,7 +59,7 @@ Save synamic settings into chronicle db
 
 ## current\_revision
 
-get current revision of settings.
+loads setting from chronicle reader and returns the last revision and drops them
 
 ## BUILD
 
