@@ -16,6 +16,7 @@ WriteMakefile(
     BUILD_REQUIRES => {
         'Test::More'              => 0,
         'Moose'                   => 0,
+        'namespace::autoclean'    => 0,
         'Data::Hash::DotNotation' => 0,
         'Data::Chronicle::Writer' => 0,
         'Data::Chronicle::Reader' => 0,
@@ -27,6 +28,7 @@ WriteMakefile(
     },
     PREREQ_PM => {
         'Moose'                   => 0,
+        'namespace::autoclean'    => 0,
         'Data::Hash::DotNotation' => 0,
         'Data::Chronicle::Writer' => 0,
         'Data::Chronicle::Reader' => 0,
