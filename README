@@ -39,11 +39,14 @@ SUBROUTINES/METHODS
 
   chronicle_reader
     The chronicle store that configurations can be fetch from it. It should
-    be an instance of Data::Chronicle::Reader.
+    be an instance of Data::Chronicle::Reader. But user is free to implement
+    any storage backend he wants if it is implemented with a 'get' method.
 
   chronicle_writer
     The chronicle store that updated configurations can be stored into it.
-    It should be an instance of Data::Chronicle::Writer.
+    It should be an instance of Data::Chronicle::Writer. But user is free to
+    implement any storage backend he wants if it is implemented with a 'set'
+    method.
 
   check_for_update
     check and load updated settings from chronicle db

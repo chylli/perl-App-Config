@@ -44,10 +44,12 @@ The YAML file that store the configuration
 ## chronicle\_reader
 
 The chronicle store that configurations can be fetch from it. It should be an instance of [Data::Chronicle::Reader](https://metacpan.org/pod/Data::Chronicle::Reader).
+But user is free to implement any storage backend he wants if it is implemented with a 'get' method.
 
 ## chronicle\_writer
 
 The chronicle store that updated configurations can be stored into it. It should be an instance of [Data::Chronicle::Writer](https://metacpan.org/pod/Data::Chronicle::Writer).
+But user is free to implement any storage backend he wants if it is implemented with a 'set' method.
 
 ## check\_for\_update
 

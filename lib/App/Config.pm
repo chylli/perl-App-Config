@@ -75,6 +75,7 @@ has definition_yml => (
 =head2 chronicle_reader
 
 The chronicle store that configurations can be fetch from it. It should be an instance of L<Data::Chronicle::Reader>.
+But user is free to implement any storage backend he wants if it is implemented with a 'get' method.
 
 =cut
 
@@ -87,6 +88,7 @@ has chronicle_reader => (
 =head2 chronicle_writer
 
 The chronicle store that updated configurations can be stored into it. It should be an instance of L<Data::Chronicle::Writer>.
+But user is free to implement any storage backend he wants if it is implemented with a 'set' method.
 
 =cut
 
