@@ -1,11 +1,11 @@
 use Test::Most 0.22 (tests => 7);
 use Test::NoWarnings;
 
-use App::Config::Attribute;
+use App::Config::Chronicle::Attribute;
 use Data::Hash::DotNotation;
 
 throws_ok {
-    App::Config::Attribute->new(
+    App::Config::Chronicle::Attribute->new(
         name        => 'test',
         parent_path => 'apperturescience'
     );
@@ -13,7 +13,7 @@ throws_ok {
 qr/Attribute \(data_set\) is required/;
 
 throws_ok {
-    App::Config::Attribute->new(
+    App::Config::Chronicle::Attribute->new(
         name        => 'test_attribute',
         parent_path => 'test.parent',
         data_set    => {version => 1},
@@ -26,7 +26,7 @@ throws_ok {
 qr/ArrayRef/;
 
 throws_ok {
-    App::Config::Attribute->new(
+    App::Config::Chronicle::Attribute->new(
         name        => 'json_string',
         parent_path => 'validation.tests',
         data_set    => {version => 1},
@@ -40,7 +40,7 @@ qr/JSON/;
 
 subtest 'get' => sub {
     subtest 'default' => sub {
-        my $attribute = App::Config::Attribute->new(
+        my $attribute = App::Config::Chronicle::Attribute->new(
             name        => 'get',
             parent_path => 'tests',
             data_set    => {version => 1},
@@ -60,7 +60,7 @@ subtest 'get' => sub {
         my $data = {tests => {get => 'b'}};
         my $app_config = Data::Hash::DotNotation->new(data => $data);
 
-        my $attribute = App::Config::Attribute->new(
+        my $attribute = App::Config::Chronicle::Attribute->new(
             name        => 'get',
             parent_path => 'tests',
             data_set    => {
@@ -90,7 +90,7 @@ subtest 'set' => sub {
             version    => 1,
             app_config => $app_config
         };
-        my $attribute = App::Config::Attribute->new(
+        my $attribute = App::Config::Chronicle::Attribute->new(
             name        => 'get',
             parent_path => 'tests',
             data_set    => {
@@ -120,7 +120,7 @@ subtest 'set' => sub {
             version    => 1,
             app_config => $app_config
         };
-        my $attribute = App::Config::Attribute->new(
+        my $attribute = App::Config::Chronicle::Attribute->new(
             name        => 'get',
             parent_path => 'tests',
             data_set    => {
@@ -140,7 +140,7 @@ subtest 'set' => sub {
 };
 
 subtest 'set validation' => sub {
-    my $attribute = App::Config::Attribute->new(
+    my $attribute = App::Config::Chronicle::Attribute->new(
         name        => 'array',
         parent_path => 'valudations.test',
         data_set    => {version => 1},

@@ -1,11 +1,11 @@
-package App::Config::Attribute::Global;
+package App::Config::Chronicle::Attribute::Global;
 
 use Moose;
-extends 'App::Config::Attribute';
+extends 'App::Config::Chronicle::Attribute';
 
 =head1 NAME
 
-App::Config::Attribute::Global
+App::Config::Chronicle::Attribute::Global
 
 =cut
 

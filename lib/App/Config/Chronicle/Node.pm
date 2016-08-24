@@ -1,10 +1,10 @@
-package App::Config::Node;
+package App::Config::Chronicle::Node;
 
 use Moose;
 
 =head1 NAME
 
-App::Config::Node
+App::Config::Chronicle::Node
 
 =head1 DESCRIPTION
 

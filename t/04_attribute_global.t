@@ -1,12 +1,12 @@
 use Test::Most 0.22 (tests => 3);
 use Test::NoWarnings;
 
-use App::Config::Attribute::Global;
+use App::Config::Chronicle::Attribute::Global;
 use Data::Hash::DotNotation;
 
 subtest 'get' => sub {
     subtest 'default' => sub {
-        my $attribute = App::Config::Attribute::Global->new(
+        my $attribute = App::Config::Chronicle::Attribute::Global->new(
             name        => 'get',
             parent_path => 'tests',
             data_set    => {version => 1},
@@ -25,7 +25,7 @@ subtest 'get' => sub {
         my $data = {tests => {get => 'b'}};
         my $app_config = Data::Hash::DotNotation->new(data => $data);
 
-        my $attribute = App::Config::Attribute::Global->new(
+        my $attribute = App::Config::Chronicle::Attribute::Global->new(
             name        => 'get',
             parent_path => 'tests',
             data_set    => {
@@ -50,7 +50,7 @@ subtest 'get' => sub {
         $data = {tests => {get => 'b'}};
         my $app_config = Data::Hash::DotNotation->new(data => $data);
 
-        my $attribute = App::Config::Attribute::Global->new(
+        my $attribute = App::Config::Chronicle::Attribute::Global->new(
             name        => 'get',
             parent_path => 'tests',
             data_set    => {
@@ -80,7 +80,7 @@ subtest 'set - where' => sub {
     $data = {tests => {get => 'b'}};
     my $app_config = Data::Hash::DotNotation->new(data => $data);
 
-    my $attribute = App::Config::Attribute::Global->new(
+    my $attribute = App::Config::Chronicle::Attribute::Global->new(
         name        => 'get',
         parent_path => 'tests',
         data_set    => {

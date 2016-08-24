@@ -1,7 +1,7 @@
-package App::Config::Attribute;
+package App::Config::Chronicle::Attribute;
 
 use Moose;
-extends 'App::Config::Node';
+extends 'App::Config::Chronicle::Node';
 use namespace::autoclean;
 use JSON::XS qw( decode_json );
 
@@ -13,7 +13,7 @@ subtype 'LongStr', as 'Str';
 
 =head1 NAME
 
-App::Config::Attribute
+App::Config::Chronicle::Attribute
 
 =head1 ATTRIBUTES
 

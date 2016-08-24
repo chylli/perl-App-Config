@@ -1,8 +1,8 @@
 use Test::Most 0.22 qw(no_plan);
 use Test::NoWarnings;
-use App::Config::Attribute::Section;
+use App::Config::Chronicle::Attribute::Section;
 
-my $section = App::Config::Attribute::Section->new(
+my $section = App::Config::Chronicle::Attribute::Section->new(
     name        => 'test',
     parent_path => 'apperturescience',
     definition  => {},
