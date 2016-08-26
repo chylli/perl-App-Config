@@ -1,6 +1,6 @@
 # NAME
 
-App::Config - An OO configuration module which can be changed and stored into chronicle database.
+App::Config::Chronicle - An OO configuration module which can be changed and stored into chronicle database.
 
 # VERSION
 
@@ -8,7 +8,7 @@ Version 0.01
 
 # SYNOPSIS
 
-    my $app_config = App::Config->new;
+    my $app_config = App::Config::Chronicle->new;
 
 # DESCRIPTION
 
@@ -79,7 +79,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc App::Config
+    perldoc App::Config::Chronicle
 
 You can also look for information at:
 

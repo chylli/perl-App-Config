@@ -3,10 +3,10 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME               => 'App::Config',
+    NAME               => 'App::Config::Chronicle',
     AUTHOR             => q{Binary.com <binary@cpan.org>},
-    VERSION_FROM       => 'lib/App/Config.pm',
-    ABSTRACT_FROM      => 'lib/App/Config.pm',
+    VERSION_FROM       => 'lib/App/Config/Chronicle.pm',
+    ABSTRACT_FROM      => 'lib/App/Config/Chronicle.pm',
     LICENSE            => 'apache',
     PL_FILES           => {},
     MIN_PERL_VERSION   => 5.014,

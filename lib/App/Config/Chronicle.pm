@@ -1,4 +1,4 @@
-package App::Config;
+package App::Config::Chronicle;
 
 use strict;
 use warnings;
@@ -6,7 +6,7 @@ use Time::HiRes qw(time);
 
 =head1 NAME
 
-App::Config - An OO configuration module which can be changed and stored into chronicle database.
+App::Config::Chronicle - An OO configuration module which can be changed and stored into chronicle database.
 
 =head1 VERSION
 
@@ -18,7 +18,7 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-    my $app_config = App::Config->new;
+    my $app_config = App::Config::Chronicle->new;
 
 =head1 DESCRIPTION
 
@@ -53,8 +53,8 @@ use Moose;
 use namespace::autoclean;
 use YAML::XS qw(LoadFile);
 
-use App::Config::Attribute::Section;
-use App::Config::Attribute::Global;
+use App::Config::Chronicle::Attribute::Section;
+use App::Config::Chronicle::Attribute::Global;
 use Data::Hash::DotNotation;
 
 use Data::Chronicle::Reader;
@@ -159,11 +159,11 @@ sub _create_section {
 
     my $writer      = "_$name";
     my $path_config = {};
-    if ($section->isa('App::Config::Attribute::Section')) {
+    if ($section->isa('App::Config::Chronicle::Attribute::Section')) {
         $path_config = {parent_path => $section->path};
     }
 
-    my $new_section = Moose::Meta::Class->create_anon_class(superclasses => ['App::Config::Attribute::Section'])->new_object(
+    my $new_section = Moose::Meta::Class->create_anon_class(superclasses => ['App::Config::Chronicle::Attribute::Section'])->new_object(
         name       => $name,
         definition => $definition,
         data_set   => {},
@@ -173,7 +173,7 @@ sub _create_section {
     $section->meta->add_attribute(
         $name,
         is            => 'ro',
-        isa           => 'App::Config::Attribute::Section',
+        isa           => 'App::Config::Chronicle::Attribute::Section',
         writer        => $writer,
         documentation => $definition->{description},
     );
@@ -191,7 +191,7 @@ sub _create_global_attribute {
     my $name       = shift;
     my $definition = shift;
 
-    my $attribute = $self->_add_attribute('App::Config::Attribute::Global', $section, $name, $definition);
+    my $attribute = $self->_add_attribute('App::Config::Chronicle::Attribute::Global', $section, $name, $definition);
     $self->_add_dynamic_setting_info($attribute->path, $definition);
 
     return;
@@ -203,7 +203,7 @@ sub _create_generic_attribute {
     my $name       = shift;
     my $definition = shift;
 
-    $self->_add_attribute('App::Config::Attribute', $section, $name, $definition);
+    $self->_add_attribute('App::Config::Chronicle::Attribute', $section, $name, $definition);
 
     return;
 }
@@ -391,7 +391,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc App::Config
+    perldoc App::Config::Chronicle
 
 
 You can also look for information at:
@@ -421,4 +421,4 @@ L<http://search.cpan.org/dist/App-Config/>
 
 =cut
 
-1;    # End of App::Config
+1;    # End of App::Config::Chronicle
