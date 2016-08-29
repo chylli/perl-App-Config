@@ -83,6 +83,10 @@ You can find documentation for this module with the perldoc command.
 
 You can also look for information at:
 
+- Source Repository
+
+    [https://github.com/binary-com/perl-App-Config-Chronicle](https://github.com/binary-com/perl-App-Config-Chronicle)
+
 - RT: CPAN's request tracker (report bugs here)
 
     [http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Config](http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Config)

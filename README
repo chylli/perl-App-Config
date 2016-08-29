@@ -1,6 +1,6 @@
 NAME
-    App::Config::Chronicle - An OO configuration module which can be changed and stored
-    into chronicle database.
+    App::Config::Chronicle - An OO configuration module which can be changed
+    and stored into chronicle database.
 
 VERSION
     Version 0.01
@@ -75,6 +75,10 @@ SUPPORT
         perldoc App::Config::Chronicle
 
     You can also look for information at:
+
+    *   Source Repository
+
+        <https://github.com/binary-com/perl-App-Config-Chronicle>
 
     *   RT: CPAN's request tracker (report bugs here)
 

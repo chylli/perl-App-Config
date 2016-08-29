@@ -398,6 +398,10 @@ You can also look for information at:
 
 =over 4
 
+=item * Source Repository
+
+L<https://github.com/binary-com/perl-App-Config-Chronicle>
+
 =item * RT: CPAN's request tracker (report bugs here)
 
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-Config>
