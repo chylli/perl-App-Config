@@ -112,7 +112,7 @@ has setting_name => (
 
 =head2 refresh_interval
 
-How much time (in seconds) should pass between C<check_for_update> invocations until
+How much time (in seconds) should pass between L<check_for_update> invocations until
 it actually will do (a bit heavy) lookup for settings in redis.
 
 Default value is 10 seconds
@@ -269,7 +269,7 @@ sub _validate_key {
     my $key     = shift;
     my $section = shift;
 
-    if (grep { $key eq $_ } qw(path parent_path name definition version data_set check_for_update save_dynamic)) {
+    if (grep { $key eq $_ } qw(path parent_path name definition version data_set check_for_update save_dynamic refresh_interval)) {
         die "Variable with name $key found under "
             . $section->path
             . ".\n$key is an internally used variable and cannot be reused, please use a different name";
