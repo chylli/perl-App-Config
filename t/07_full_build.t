@@ -31,8 +31,11 @@ my $app_config2 = App::Config::Chronicle->new(
 );
 is($app_config2->current_revision, $new_revision,  "revision is correct even if we create a new instance");
 is($app_config2->system->email,    'test@abc.com', "email is updated");
+# force check & trigger internal timer
+$app_config2->check_for_update;
 $app_config->system->email('test2@abc.com');
 $app_config->save_dynamic;
+# will not refresh as not enough time has passed
 $app_config2->check_for_update;
 is($app_config2->system->email, 'test@abc.com', "still have old value");
 

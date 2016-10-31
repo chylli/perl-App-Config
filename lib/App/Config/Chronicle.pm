@@ -127,10 +127,10 @@ has refresh_interval => (
 );
 
 has _updated_at => (
-    is       => 'ro',
+    is       => 'rw',
     isa      => 'Num',
     required => 1,
-    default  => sub { time },
+    default  => 0,
 );
 
 # definitions database
@@ -292,6 +292,7 @@ sub check_for_update {
     my $prev_update = $self->_updated_at;
     return if ($now - $prev_update < $self->refresh_interval);
 
+    $self->_updated_at($now);
     # do check in Redis
     my $data_set = $self->data_set;
     my $app_settings = $self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
