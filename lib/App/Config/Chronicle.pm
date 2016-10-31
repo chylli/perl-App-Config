@@ -267,14 +267,15 @@ sub check_for_update {
 
     my $app_settings = $self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
 
+    my $db_version;
     if ($app_settings and $data_set) {
-        my $db_version = $app_settings->{_rev};
+        $db_version = $app_settings->{_rev};
         unless ($data_set->{version} and $db_version and $db_version eq $data_set->{version}) {
             $self->_add_app_setttings($data_set, $app_settings);
         }
     }
 
-    return;
+    return $db_version;
 }
 
 =head2 save_dynamic
