@@ -10,11 +10,11 @@ App::Config::Chronicle - An OO configuration module which can be changed and sto
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
@@ -297,15 +297,16 @@ sub check_for_update {
     my $data_set = $self->data_set;
     my $app_settings = $self->chronicle_reader->get($self->setting_namespace, $self->setting_name);
 
+    my $db_version;
     if ($app_settings and $data_set) {
-        my $db_version = $app_settings->{_rev};
+        $db_version = $app_settings->{_rev};
         unless ($data_set->{version} and $db_version and $db_version eq $data_set->{version}) {
             # refresh all
             $self->_add_app_setttings($data_set, $app_settings);
         }
     }
 
-    return;
+    return $db_version;
 }
 
 =head2 save_dynamic

@@ -1,5 +1,8 @@
 Revision history for App-Config
 
+0.03    Mon 31 Oct 07:19:09 GMT 2016
+    * Return the db revision from check_for_update
+
 0.01    Date/time
         First version, released on an unsuspecting world.
 
