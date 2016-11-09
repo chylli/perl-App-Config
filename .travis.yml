@@ -14,8 +14,10 @@ before_install:
     - build-perl
     - perl -V
     - "cpanm -n --installdeps ."
+    - "cpanm -qn Test::Requires::Git"
+    - "cpanm -qn Devel::Cover::Report::Codecov"
 install:
     - perl Makefile.PL
     - make manifest
 script:
-    - RELEASE_TESTING=1 make test
+    - RELEASE_TESTING=1 make test && cover -test -report codecov

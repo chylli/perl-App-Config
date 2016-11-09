@@ -2,6 +2,9 @@
 
 App::Config::Chronicle - An OO configuration module which can be changed and stored into chronicle database.
 
+[![Build Status](https://travis-ci.org/binary-com/perl-App-Config-Chronicle.svg?branch=master)](https://travis-ci.org/binary-com/perl-App-Config-Chronicle)
+[![codecov](https://codecov.io/gh/binary-com/perl-App-Config-Chronicle/branch/master/graph/badge.svg)](https://codecov.io/gh/binary-com/perl-App-Config-Chronicle)
+
 # VERSION
 
 Version 0.01
