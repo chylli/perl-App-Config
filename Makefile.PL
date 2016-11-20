@@ -7,7 +7,7 @@ use 5.014;
 use ExtUtils::MakeMaker 6.48;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "An OO configuration module which can be changed and stored into chronicle database.",
+  "ABSTRACT" => "Provides Data::Chronicle-backed configuration storage",
   "AUTHOR" => "binary.com <cpan\@binary.com>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.48"
@@ -35,7 +35,7 @@ my %WriteMakefileArgs = (
     "Test::MockObject" => 0,
     "Test::More" => "0.98"
   },
-  "VERSION" => "0.03",
+  "VERSION" => "0.04",
   "test" => {
     "TESTS" => "t/*.t"
   }

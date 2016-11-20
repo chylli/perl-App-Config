@@ -1,4 +1,5 @@
 package App::Config::Chronicle;
+# ABSTRACT: Provides Data::Chronicle-backed configuration storage
 
 use strict;
 use warnings;
@@ -8,13 +9,9 @@ use Time::HiRes qw(time);
 
 App::Config::Chronicle - An OO configuration module which can be changed and stored into chronicle database.
 
-=head1 VERSION
-
-Version 0.03
-
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 

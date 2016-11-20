@@ -1,5 +1,9 @@
 Revision history for App-Config
 
+{{$NEXT}}
+    * No functional changes
+    * Drop POD and coverage tests, switch to Dist::Zilla
+
 0.03    Mon 31 Oct 07:19:09 GMT 2016
     * Return the db revision from check_for_update
 
