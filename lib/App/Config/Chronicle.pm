@@ -329,7 +329,7 @@ sub save_dynamic {
 
     $settings->{global} = $global->data;
     $settings->{_rev}   = time;
-    $self->chronicle_writer->set($self->setting_namespace, $self->setting_name, $settings);
+    $self->chronicle_writer->set($self->setting_namespace, $self->setting_name, $settings, Date::Utility->new);
 
     return 1;
 }
