@@ -10,11 +10,11 @@ App::Config::Chronicle - An OO configuration module which can be changed and sto
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -329,7 +329,7 @@ sub save_dynamic {
 
     $settings->{global} = $global->data;
     $settings->{_rev}   = time;
-    $self->chronicle_writer->set($self->setting_namespace, $self->setting_name, $settings);
+    $self->chronicle_writer->set($self->setting_namespace, $self->setting_name, $settings, Date::Utility->new);
 
     return 1;
 }

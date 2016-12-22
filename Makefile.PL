@@ -35,6 +35,7 @@ WriteMakefile(
         'YAML::XS'                => 0,
         'JSON::XS'                => 0,
         'Time::HiRes'             => 0,
+        'Date::Utility'           => 0,
     },
     dist => {
         COMPRESS => 'gzip -9f',
