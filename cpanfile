@@ -6,6 +6,7 @@ requires 'Data::Hash::DotNotation';
 requires 'JSON::XS';
 requires 'Moose';
 requires 'Time::HiRes';
+requires 'Date::Utility';
 requires 'YAML::XS';
 requires 'namespace::autoclean';
 

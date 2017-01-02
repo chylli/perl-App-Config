@@ -9,6 +9,10 @@ use Time::HiRes qw(time);
 
 App::Config::Chronicle - An OO configuration module which can be changed and stored into chronicle database.
 
+=head1 VERSION
+
+Version 0.04
+
 =cut
 
 our $VERSION = '0.04';
@@ -326,7 +330,7 @@ sub save_dynamic {
 
     $settings->{global} = $global->data;
     $settings->{_rev}   = time;
-    $self->chronicle_writer->set($self->setting_namespace, $self->setting_name, $settings);
+    $self->chronicle_writer->set($self->setting_namespace, $self->setting_name, $settings, Date::Utility->new);
 
     return 1;
 }
