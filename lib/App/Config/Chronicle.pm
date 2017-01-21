@@ -1,4 +1,5 @@
 package App::Config::Chronicle;
+# ABSTRACT: Provides Data::Chronicle-backed configuration storage
 
 use strict;
 use warnings;
@@ -10,11 +11,11 @@ App::Config::Chronicle - An OO configuration module which can be changed and sto
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
