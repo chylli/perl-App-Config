@@ -9,6 +9,8 @@ use MooseX::Types -declare => ['LongStr'];
 use Moose::Util::TypeConstraints;
 use Try::Tiny;
 
+## VERSION
+
 subtype 'LongStr', as 'Str';
 
 =head1 NAME
